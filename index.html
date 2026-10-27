@@ -1,35 +1,795 @@
+```html
 <!DOCTYPE html>
 <html lang="ta">
 <head>
     <meta charset="UTF-8">
-    <title>Kalvettu Tamilan - Chola Inscriptions & Vatteluthu</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>கல்வெட்டுத் தமிழன் (Kalvettu Tamilan)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Anek Tamil & Noto Serif Tamil -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Tamil:wght@300;400;500;600;700;800&family=Noto+Serif+Tamil:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            300: '#FDE047',
+                            400: '#FACC15',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                            700: '#A16207',
+                        },
+                        temple: {
+                            dark: '#0a0806',
+                            stone: '#15120e',
+                            card: '#1f1a14',
+                            border: '#3a2e1e',
+                            accent: '#8b0000',
+                            gold: '#d4af37'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Anek Tamil', 'sans-serif'],
+                        serif: ['Noto Serif Tamil', 'serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0a0806;
+            color: #e5e7eb;
+            font-family: 'Anek Tamil', sans-serif;
+            background-image: 
+                radial-gradient(rgba(212, 175, 55, 0.04) 1px, transparent 0),
+                linear-gradient(to bottom, #0a0806, #120e0a);
+            background-size: 28px 28px, 100% 100%;
+            scroll-behavior: smooth;
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF8D6 0%, #EAB308 40%, #D4AF37 70%, #996515 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .chola-gradient-text {
+            background: linear-gradient(135deg, #FFD700 0%, #FF8C00 50%, #DC143C 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stone-card {
+            background: linear-gradient(145deg, #1c1712, #120f0b);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+
+        .stone-card:hover {
+            border-color: rgba(212, 175, 55, 0.35);
+        }
+
+        .vatteluttu-font {
+            font-family: 'Noto Serif Tamil', serif;
+            letter-spacing: 2px;
+        }
+
+        /* Timeline connector */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, #eab308, transparent);
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 768px) {
+            .timeline-line::before {
+                left: 20px;
+            }
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0806;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #3a2e1e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ca8a04;
+        }
+    </style>
 </head>
-<body style="text-align: center; font-family: Arial, sans-serif; padding: 20px; background-color: #f9f9f9; color: #333;">
-    
-    <h1 style="color: #b5830d;">கல்வெட்டுத் தமிழன் (Kalvettu Tamilan)</h1>
-    <p style="font-size: 16px; color: #666;">உரிமையாளர் / உருவாக்குநர்: <strong>ரித்தீஷ் (Rithish)</strong></p>
-    <p style="font-size: 18px;">சோழர்கள் காலத்து வட்டெழுத்துக்கள் மற்றும் வரலாற்றுச் செப்பேடுகள் பற்றிய தகவல்கள்.</p>
-    
-    <hr style="width: 50%; margin: 20px auto;">
+<body class="min-h-screen flex flex-col selection:bg-gold-500 selection:text-black">
 
-    <!-- கல்வெட்டு என்றால் என்ன? -->
-    <h2 style="color: #333;">கல்வெட்டு என்றால் என்ன?</h2>
-    <p style="max-width: 600px; margin: 0 auto 20px auto; line-height: 1.6; text-align: left;">
-        பார்க்கும் வியக்கும் வண்ணம் நமது முன்னோர் பாறைகள், செப்பேடுகள், மற்றும் கோயில்களின் சுவர்களில் பொறித்து வைத்த வரலாற்று ஆவணங்களே கல்வெட்டுகள் ஆகும். கல்வெட்டுகளில் நேரடியாக உருவங்கள் இல்லாவிட்டாலும், அவற்றின் வரிகள் மற்றும் தொன்மையை வைத்து சோழர்களின் சின்னங்கள் மற்றும் வரலாற்றுச் சிறப்புகளை நாம் கண்டறிகிறோம். இவை தமிழர்களின் மொழி வளர்ச்சி மற்றும் ஆட்சி முறையை நமக்குச் சொல்லும் சான்றுகளாகும்.
-    </p>
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 bg-temple-dark/95 backdrop-blur-md border-b border-gold-600/30 shadow-2xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-gold-700 via-gold-500 to-amber-200 p-0.5 shadow-lg group-hover:scale-105 transition-transform">
+                    <div class="w-full h-full bg-temple-dark rounded-full flex items-center justify-center">
+                        <span class="font-serif font-extrabold text-gold-400 text-2xl">க</span>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold font-serif text-gold-400 leading-none">கல்வெட்டுத் தமிழன்</h1>
+                    <span class="text-[11px] text-amber-200/60 font-semibold tracking-widest block mt-0.5">KALVETTU TAMILAN</span>
+                </div>
+            </a>
 
-    <!-- சோழர் கால வட்டெழுத்துக்கள் -->
-    <h2 style="color: #333;">சோழர் கால வட்டெழுத்துக்கள்</h2>
-    <p style="max-width: 600px; margin: 0 auto 20px auto; line-height: 1.6; text-align: left;">
-        சோழப் பேரரசர்களின் காலத்தில் பயன்படுத்தப்பட்ட வட்டெழுத்து வடிவங்கள் மற்றும் கல்வெட்டு வாசிப்பு முறைகள் நம் வரலாற்றின் பொக்கிஷங்களாகும். இத்தளத்தில் சோழர்களின் கல்வெட்டுச் சிறப்புகளைத் தொடர்ந்து காணலாம்.
-    </p>
+            <!-- Quick Navigation Menu -->
+            <nav class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+                <a href="#about" class="hover:text-gold-400 transition-colors">கல்வெட்டு என்றால் என்ன?</a>
+                <a href="#dynasties" class="hover:text-gold-400 transition-colors">மூவேந்தர்கள்</a>
+                <a href="#evolution" class="hover:text-gold-400 transition-colors">தமிழ் வளர்ச்சி</a>
+                <a href="#vatteluttu" class="hover:text-gold-400 transition-colors text-gold-400 font-bold">வட்டெழுத்து கற்க</a>
+                <a href="#thanjavur" class="hover:text-gold-400 transition-colors">தஞ்சைப் பெரிய கோவில்</a>
+            </nav>
 
-    <!-- YouTube Channel Button -->
-    <div style="margin: 30px 0;">
-        <a href="https://www.youtube.com/@KalVettuTamilan" target="_blank" style="background-color: red; color: white; padding: 12px 24px; text-decoration: none; font-weight: bold; border-radius: 5px; display: inline-block;">
-            எங்களது யூடியூப் சேனலைப் பார்க்க இங்கே அழுத்தவும்
-        </a>
-    </div>
+            <!-- YouTube CTA -->
+            <a href="https://www.youtube.com/@KalVettuTamilan" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center space-x-2 bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white px-4 py-2 rounded-full font-bold shadow-lg hover:shadow-red-600/40 transition-all text-xs sm:text-sm">
+                <i class="fa-brands fa-youtube text-base sm:text-lg"></i>
+                <span>Subscribe</span>
+            </a>
+        </div>
+    </header>
 
+    <!-- Main Content -->
+    <main class="flex-grow">
+
+        <!-- 1. Hero & Creator Section -->
+        <section class="relative py-16 sm:py-24 px-4 overflow-hidden border-b border-gold-600/10">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(139,0,0,0.2)_0,transparent_60%)] pointer-events-none"></div>
+            
+            <div class="max-w-5xl mx-auto text-center relative z-10">
+                
+                <!-- Badge -->
+                <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-gold-600/10 border border-gold-500/30 text-gold-400 text-xs sm:text-sm font-semibold mb-6">
+                    <i class="fa-solid fa-scroll text-amber-400"></i>
+                    <span>வரலாற்று தொன்மை & தமிழ் வட்டெழுத்து ஆவணம்</span>
+                </div>
+
+                <!-- Main Title -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black font-serif mb-4 leading-tight gold-gradient-text">
+                    கல்வெட்டுத் தமிழன்
+                </h1>
+
+                <p class="text-amber-200/80 font-serif text-lg sm:text-xl mb-6">Kalvettu Tamilan Official Portal</p>
+
+                <div class="w-32 h-1 bg-gradient-to-r from-transparent via-gold-500 to-transparent mx-auto mb-8"></div>
+
+                <!-- Prominent Creator Credit Badge -->
+                <div class="inline-block stone-card p-6 rounded-2xl border-2 border-gold-500/40 mb-8 max-w-lg w-full relative">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold-500 text-black px-4 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider">
+                        உரிமையாளர் & உருவாக்குநர்
+                    </div>
+                    <div class="flex items-center justify-center space-x-4 mt-2">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-red-700 flex items-center justify-center text-white text-2xl font-bold font-serif shadow-md">
+                            ரி
+                        </div>
+                        <div class="text-left">
+                            <h2 class="text-2xl sm:text-3xl font-extrabold text-amber-300 font-serif">ரித்தீஷ் <span class="text-base font-medium text-gray-400">(Rithish)</span></h2>
+                            <p class="text-xs sm:text-sm text-gray-300">தமிழ் கல்வெட்டாராய்ச்சி & வரலாற்றுத் தொகுப்பாளர்</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Channel Description -->
+                <p class="text-base sm:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-8">
+                    வணக்கம்! நமது தமிழ் முன்னோர்களின் பாறை பொறிப்புகள், சோழர்-பாண்டியர்-சேரர் கால வட்டெழுத்துகள் மற்றும் வரலாற்றுச் செப்பேடுகள் பற்றிய தகவல்களை விளக்கும் பிரம்மாண்ட வரலாற்றுத் தளம்!
+                </p>
+
+                <!-- YouTube Main CTA Button -->
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://www.youtube.com/@KalVettuTamilan" target="_blank" rel="noopener noreferrer" 
+                       class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-gradient-to-r from-red-600 via-red-700 to-red-800 hover:from-red-500 hover:to-red-700 text-white font-bold px-8 py-4 rounded-xl shadow-xl hover:shadow-red-600/40 transition-all text-base sm:text-lg transform hover:-translate-y-1">
+                        <i class="fa-brands fa-youtube text-2xl"></i>
+                        <span>எங்களது யூடியூப் சேனலை சப்ஸ்கிரைப் செய்யுங்கள்</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 2. கல்வெட்டு என்றால் என்ன? (What is Epigraphy?) -->
+        <section id="about" class="py-16 px-4 max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-gold-500 uppercase tracking-widest">EPIOGRAPHY & INSCRIPTIONS</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-serif text-gold-400 mt-1">கல்வெட்டு என்றால் என்ன?</h2>
+                <div class="w-20 h-1 bg-gold-500/50 mx-auto mt-3"></div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1: பாறை கல்வெட்டுகள் -->
+                <div class="stone-card rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-1 transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-gold-600/20 flex items-center justify-center text-gold-400 text-2xl mb-4 group-hover:bg-gold-500 group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-mountain"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-serif text-amber-200 mb-3">பாறைக் கல்வெட்டுகள்</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        பார்க்கும் வியக்கும் வண்ணம் நமது முன்னோர்கள் பாறைகள், மலைக்குகைகள் மற்றும் கோயில்களின் சுவர்களில் உளி கொண்டு பொறித்து வைத்த வரலாற்று ஆவணங்களே கல்வெட்டுகள் ஆகும். இவை காலத்தால் அழியாத தமிழ் சான்றுகள்.
+                    </p>
+                </div>
+
+                <!-- Card 2: செப்பேடுகள் -->
+                <div class="stone-card rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-1 transition-all border-gold-500/30">
+                    <div class="w-14 h-14 rounded-xl bg-gold-600/20 flex items-center justify-center text-gold-400 text-2xl mb-4 group-hover:bg-gold-500 group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-[#d4af37] fa-sheet-plastic"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-serif text-amber-200 mb-3">செப்பேடுகள் (Copper Plates)</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        மன்னர்கள் வழங்கிய நிலக்கொடைகள், அரச ஆணைகள் மற்றும் போர் வெற்றிகளை செப்புத் தகடுகளில் பொறித்து அரச முத்திரையுடன் வழங்கினர். வேள்விக்குடி மற்றும் ஆனைமங்கலச் செப்பேடுகள் இதற்கு மிகச்சிறந்த உன்னத உதாரணங்களாகும்.
+                    </p>
+                </div>
+
+                <!-- Card 3: ஓலைச்சுவடிகள் -->
+                <div class="stone-card rounded-2xl p-6 relative overflow-hidden group hover:-translate-y-1 transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-gold-600/20 flex items-center justify-center text-gold-400 text-2xl mb-4 group-hover:bg-gold-500 group-hover:text-black transition-colors">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                    </div>
+                    <h3 class="text-xl font-bold font-serif text-amber-200 mb-3">ஓலைச்சுவடிகள் & மெய்க்கீர்த்திகள்</h3>
+                    <p class="text-sm text-gray-300 leading-relaxed">
+                        இலக்கியங்கள் ஓலைச்சுவடிகளில் எழுதப்பட்டாலும், மன்னர்களின் ஆட்சி சிறப்புகளும் அவர்தம் வம்சாவளிகளும் "மெய்க்கீர்த்தி" என்ற பெயரில் கல்வெட்டுகளில் அழியாப் பதிவாக வைக்கப்பட்டன.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 3. மூவேந்தர்கள் (Cheras, Cholas, Pandyas) -->
+        <section id="dynasties" class="py-16 px-4 max-w-7xl mx-auto border-t border-gold-600/10">
+            <div class="text-center mb-12">
+                <span class="text-xs font-bold text-gold-500 uppercase tracking-widest">TAMIL DYNASTIES</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-serif text-gold-400 mt-1">மூவேந்தர்கள்: சேர, சோழ, பாண்டியர்கள்</h2>
+                <p class="text-gray-400 text-sm sm:text-base mt-2">பண்டைய தமிழ் மன்னர்களின் ஆட்சிக் காலம், சின்னங்கள் மற்றும் கல்வெட்டு சான்றுகள்</p>
+            </div>
+
+            <!-- Dynasties Selector Tabs -->
+            <div class="flex justify-center space-x-2 sm:space-x-6 mb-10">
+                <button onclick="selectDynasty('cholas')" id="btn-cholas" class="dyn-btn active px-6 py-3 rounded-xl font-bold text-sm sm:text-lg transition-all bg-gradient-to-r from-gold-500 to-amber-600 text-black shadow-lg">
+                    <i class="fa-solid fa-shield-cat mr-2"></i>சோழர்கள்
+                </button>
+                <button onclick="selectDynasty('pandyas')" id="btn-pandyas" class="dyn-btn px-6 py-3 rounded-xl font-bold text-sm sm:text-lg transition-all bg-temple-card text-gray-300 hover:text-gold-400 border border-gold-600/30">
+                    <i class="fa-solid fa-fish mr-2"></i>பாண்டியர்கள்
+                </button>
+                <button onclick="selectDynasty('cheras')" id="btn-cheras" class="dyn-btn px-6 py-3 rounded-xl font-bold text-sm sm:text-lg transition-all bg-temple-card text-gray-300 hover:text-gold-400 border border-gold-600/30">
+                    <i class="fa-solid fa-bow-arrow mr-2"></i>சேரர்கள்
+                </button>
+            </div>
+
+            <!-- Tab Content Container -->
+            <!-- Cholas -->
+            <div id="dyn-cholas" class="dyn-content stone-card rounded-3xl p-6 sm:p-10 border border-gold-500/40">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7">
+                        <span class="text-xs font-bold text-gold-500 uppercase tracking-widest">சோழப் பேரரசு (Chola Empire)</span>
+                        <h3 class="text-3xl font-extrabold font-serif chola-gradient-text mt-1 mb-4">புலிச் கொடியும் தஞ்சை சோழர் கல்வெட்டும்</h3>
+                        <p class="text-gray-300 leading-relaxed text-base mb-6">
+                            சோழர்கள் உறையூர் மற்றும் தஞ்சாவூரைத் தலைநகராகக் கொண்டு ஆட்சி செய்தனர். ராஜராஜ சோழன் மற்றும் ராஜேந்திர சோழன் காலத்தில் தமிழ்நாட்டின் கல்வெட்டு கலை உச்சத்தை எட்டியது.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">சின்னம் (Symbol)</span>
+                                <span class="text-amber-200 font-bold">பாயும் புலி (Tiger)</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">தலைநகரம் (Capital)</span>
+                                <span class="text-amber-200 font-bold">தஞ்சாவூர் / உறையூர்</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">பூ மாலை (Garland)</span>
+                                <span class="text-amber-200 font-bold">ஆத்தி மாலை (Fig Flower)</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">முக்கிய கல்வெட்டுகள்</span>
+                                <span class="text-amber-200 font-bold">தஞ்சை பெரிய கோவில் & ஆனைமங்கலம்</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 text-center">
+                        <div class="p-8 rounded-2xl bg-gradient-to-br from-amber-950/40 to-red-950/40 border border-gold-500/30">
+                            <i class="fa-solid fa-paw text-7xl text-amber-500 mb-4"></i>
+                            <h4 class="text-xl font-bold font-serif text-gold-300">சோழர் முத்திரை</h4>
+                            <p class="text-xs text-gray-400 mt-2">"திருமகள் போல பெருநிலச் செல்வியும்" - சோழர் மெய்க்கீர்த்தி ஆரம்ப வரி</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pandyas -->
+            <div id="dyn-pandyas" class="dyn-content hidden stone-card rounded-3xl p-6 sm:p-10 border border-gold-500/40">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7">
+                        <span class="text-xs font-bold text-gold-500 uppercase tracking-widest">பாண்டிய நாடு (Pandya Realm)</span>
+                        <h3 class="text-3xl font-extrabold font-serif text-amber-300 mt-1 mb-4">இரட்டை மீனும் வேள்விக்குடி செப்பேடுகளும்</h3>
+                        <p class="text-gray-300 leading-relaxed text-base mb-6">
+                            பாண்டியர்கள் மதுரையைத் தலைநகராகக் கொண்டு தமிழ்ச் சங்கம் வளர்த்து தமிழ் மொழியைப் போற்றினர். வட்டெழுத்து முறையை மிக நீண்ட காலம் தங்களின் ஆட்சி மொழியாகவும் கல்வெட்டுகளிலும் பயன்படுத்தியவர்கள் பாண்டியர்களே.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">சின்னம் (Symbol)</span>
+                                <span class="text-amber-200 font-bold">இரட்டை மீன் (Twin Fish)</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">தலைநகரம் (Capital)</span>
+                                <span class="text-amber-200 font-bold">மதுரை / கொற்கை</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">பூ மாலை (Garland)</span>
+                                <span class="text-amber-200 font-bold">வேப்பம்பூ மாலை (Neem Flower)</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">முக்கிய கல்வெட்டுகள்</span>
+                                <span class="text-amber-200 font-bold">மாங்குளம் & வேள்விக்குடி செப்பேடு</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 text-center">
+                        <div class="p-8 rounded-2xl bg-gradient-to-br from-blue-950/40 to-amber-950/40 border border-gold-500/30">
+                            <i class="fa-solid fa-fish text-7xl text-blue-400 mb-4"></i>
+                            <h4 class="text-xl font-bold font-serif text-gold-300">பாண்டியர் முத்திரை</h4>
+                            <p class="text-xs text-gray-400 mt-2">தமிழ் சங்கம் வளர்த்த மதுரையின் தென்னவன் தொன்மை</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cheras -->
+            <div id="dyn-cheras" class="dyn-content hidden stone-card rounded-3xl p-6 sm:p-10 border border-gold-500/40">
+                <div class="grid lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7">
+                        <span class="text-xs font-bold text-gold-500 uppercase tracking-widest">சேர பேரரசு (Chera Kingdom)</span>
+                        <h3 class="text-3xl font-extrabold font-serif text-amber-300 mt-1 mb-4">வில்லவரும் புகழூர் பாறைக் கல்வெட்டுகளும்</h3>
+                        <p class="text-gray-300 leading-relaxed text-base mb-6">
+                            சேர மன்னர்கள் மேலைக்கடலோரப் பகுதியான வஞ்சி (கருவூர் / கொடுங்கோளூர்) நகரைத் தலைநகராகக் கொண்டு ஆட்சி புரிந்தனர். புகழூர் மற்றும் பதிற்றுப்பத்து நூல்கள் சேரர்களின் தமிழ் பிராமி மற்றும் வட்டெழுத்து வரலாற்றுக்கு முக்கியச் சான்றுகளாகும்.
+                        </p>
+                        
+                        <div class="grid grid-cols-2 gap-4 text-sm">
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">சின்னம் (Symbol)</span>
+                                <span class="text-amber-200 font-bold">வில் அம்பு (Bow & Arrow)</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">தலைநகரம் (Capital)</span>
+                                <span class="text-amber-200 font-bold">வஞ்சி / கரூர் / மகோதை</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">பூ மாலை (Garland)</span>
+                                <span class="text-amber-200 font-bold">பனம்பூ மாலை (Palm Flower)</span>
+                            </div>
+                            <div class="p-3 bg-temple-dark rounded-xl border border-gold-600/20">
+                                <span class="text-gold-500 text-xs block font-bold">முக்கிய கல்வெட்டுகள்</span>
+                                <span class="text-amber-200 font-bold">புகழூர் கல்வெட்டு & திருக்கடித்தானம்</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-5 text-center">
+                        <div class="p-8 rounded-2xl bg-gradient-to-br from-green-950/40 to-amber-950/40 border border-gold-500/30">
+                            <i class="fa-solid fa-bow-arrow text-7xl text-emerald-400 mb-4"></i>
+                            <h4 class="text-xl font-bold font-serif text-gold-300">சேரர் முத்திரை</h4>
+                            <p class="text-xs text-gray-400 mt-2">கொங்கு மண்டலம் மற்றும் மலைநாட்டை ஆண்ட வஞ்சி வேந்தர்கள்</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 4. தமிழ் மொழி எவ்வாறு உருவானது? (Evolution of Tamil) -->
+        <section id="evolution" class="py-16 px-4 max-w-6xl mx-auto">
+            <div class="text-center mb-14">
+                <span class="text-xs font-bold text-gold-500 uppercase tracking-widest">HISTORICAL TIMELINE</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-serif text-gold-400 mt-1">தமிழ் மொழி எவ்வாறு உருவானது?</h2>
+                <p class="text-gray-400 text-sm sm:text-base mt-2">தமிழி (தமிழ் பிராமி) முதல் இன்றைய நவீன தமிழ் வரை எழுத்து வடிவங்களின் வளர்ச்சி</p>
+            </div>
+
+            <!-- Timeline -->
+            <div class="relative timeline-line space-y-12">
+
+                <!-- Era 1 -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between group">
+                    <div class="w-full md:w-5/12 mb-4 md:mb-0 text-left md:text-right">
+                        <span class="text-xs font-bold text-gold-400 bg-gold-600/20 px-3 py-1 rounded-full border border-gold-500/30">கி.மு 300 - கி.பி 300</span>
+                        <h3 class="text-2xl font-bold font-serif text-amber-200 mt-2">தமிழி / தமிழ்-பிராமி</h3>
+                        <p class="text-gray-300 text-sm mt-2">
+                            தமிழின் மிகப்பழமையான வரிவடிவம். மாங்குளம், புகழூர் குகைகளில் சமணர் படுக்கைகளில் செதுக்கப்பட்ட நேர்கோடுகள் கொண்ட தொடக்ககால எழுத்துக்கள்.
+                        </p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-gold-500 border-4 border-temple-dark flex items-center justify-center text-black font-bold z-10 my-2 md:my-0 shadow-lg">1</div>
+                    <div class="w-full md:w-5/12 stone-card p-4 rounded-xl border border-gold-600/20 text-center font-serif text-3xl text-gold-400">
+                        𑀅 𑀆 𑀇 𑀈
+                    </div>
+                </div>
+
+                <!-- Era 2 -->
+                <div class="relative flex flex-col md:flex-row-reverse items-center justify-between group">
+                    <div class="w-full md:w-5/12 mb-4 md:mb-0 text-left">
+                        <span class="text-xs font-bold text-gold-400 bg-gold-600/20 px-3 py-1 rounded-full border border-gold-500/30">கி.பி 400 - கி.பி 1100</span>
+                        <h3 class="text-2xl font-bold font-serif text-amber-200 mt-2">வட்டெழுத்து (Vatteluttu)</h3>
+                        <p class="text-gray-300 text-sm mt-2">
+                            ஓலைச்சுவடிகளிலும் பாறைகளிலும் வேகமாகவும் வளைவாகவும் எழுதுவதற்காக உருவான வளைந்த கோடுகள் கொண்ட தமிழ் எழுத்து முறை. சேர மற்றும் பாண்டிய நாட்டில் புகழ்பெற்றது.
+                        </p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-gold-500 border-4 border-temple-dark flex items-center justify-center text-black font-bold z-10 my-2 md:my-0 shadow-lg">2</div>
+                    <div class="w-full md:w-5/12 stone-card p-4 rounded-xl border border-gold-600/20 text-center font-serif text-3xl text-gold-400">
+                        𑌅 𑌆 𑌇 𑌈
+                    </div>
+                </div>
+
+                <!-- Era 3 -->
+                <div class="relative flex flex-col md:flex-row items-center justify-between group">
+                    <div class="w-full md:w-5/12 mb-4 md:mb-0 text-left md:text-right">
+                        <span class="text-xs font-bold text-gold-400 bg-gold-600/20 px-3 py-1 rounded-full border border-gold-500/30">கி.பி 1000 - கி.பி 1600</span>
+                        <h3 class="text-2xl font-bold font-serif text-amber-200 mt-2">சோழர் கால தமிழ் & கிரந்தம்</h3>
+                        <p class="text-gray-300 text-sm mt-2">
+                            ராஜராஜ சோழன் மற்றும் பல்லவர் காலத்தில் தமிழும் வடமொழிச் சொற்களை எழுத கிரந்த எழுத்துக்களும் இணைந்து modern தமிழ் வடிவாக மாற்றம் பெறத் தொடங்கின.
+                        </p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-gold-500 border-4 border-temple-dark flex items-center justify-center text-black font-bold z-10 my-2 md:my-0 shadow-lg">3</div>
+                    <div class="w-full md:w-5/12 stone-card p-4 rounded-xl border border-gold-600/20 text-center font-serif text-3xl text-gold-400">
+                        அ ஆ இ ஈ (சோழர் கல்வெட்டு)
+                    </div>
+                </div>
+
+                <!-- Era 4 -->
+                <div class="relative flex flex-col md:flex-row-reverse items-center justify-between group">
+                    <div class="w-full md:w-5/12 mb-4 md:mb-0 text-left">
+                        <span class="text-xs font-bold text-gold-400 bg-gold-600/20 px-3 py-1 rounded-full border border-gold-500/30">கி.பி 1700 - தற்காலம்</span>
+                        <h3 class="text-2xl font-bold font-serif text-amber-200 mt-2">இக்காலத் தமிழ் (Modern Tamil Script)</h3>
+                        <p class="text-gray-300 text-sm mt-2">
+                            வீரமாமுனிவர் மற்றும் பெரியார் எழுத்துச் சீர்திருத்தங்கள் மூலம் அச்சுக்கலைக்கு ஏற்றவாறு நாம் இன்று பயன்படுத்தும் எழிலார்ந்த நவீன தமிழ் எழுத்துக்கள்.
+                        </p>
+                    </div>
+                    <div class="w-10 h-10 rounded-full bg-gold-500 border-4 border-temple-dark flex items-center justify-center text-black font-bold z-10 my-2 md:my-0 shadow-lg">4</div>
+                    <div class="w-full md:w-5/12 stone-card p-4 rounded-xl border border-gold-600/20 text-center font-serif text-3xl text-gold-400">
+                        தமிழ் வாழ்க!
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 5. வட்டெழுத்து கற்றுக்கொள்ளலாம் (Interactive Vatteluttu Learning Tool) -->
+        <section id="vatteluttu" class="py-16 px-4 max-w-7xl mx-auto border-t border-gold-600/10">
+            <div class="text-center mb-10">
+                <span class="text-xs font-bold text-gold-500 uppercase tracking-widest">INTERACTIVE SCRIPT LEARNER</span>
+                <h2 class="text-3xl sm:text-5xl font-extrabold font-serif text-gold-400 mt-1">வட்டெழுத்து கற்றுக்கொள்ளலாம்!</h2>
+                <p class="text-gray-400 text-sm sm:text-base mt-2">தமிழ் எழுத்துகளை சொடுக்கி அதன் பண்டைய வட்டெழுத்து வடிவத்தையும் உச்சரிப்பையும் அறியுங்கள்</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8">
+                
+                <!-- Left: Interactive Letter Picker & Audio Player -->
+                <div class="lg:col-span-7 stone-card p-6 sm:p-8 rounded-3xl border-2 border-gold-500/30">
+                    <h3 class="text-xl font-bold font-serif text-amber-200 mb-4 flex items-center">
+                        <i class="fa-solid fa-hand-pointer text-gold-400 mr-2"></i>
+                        <span>எழுத்துகளைத் தேர்வு செய்க:</span>
+                    </h3>
+
+                    <!-- Letters Grid -->
+                    <div id="letters-grid" class="grid grid-cols-4 sm:grid-cols-6 gap-3 mb-6">
+                        <!-- JS populated dynamically -->
+                    </div>
+
+                    <!-- Selected Letter Display Box -->
+                    <div class="bg-temple-dark p-6 rounded-2xl border border-gold-600/30 text-center relative overflow-hidden">
+                        <div class="grid grid-cols-2 gap-4 items-center">
+                            <div class="border-r border-gold-600/20 pr-4">
+                                <span class="text-xs text-gray-400 uppercase tracking-wider block mb-1">நவீன தமிழ்</span>
+                                <div id="display-modern" class="text-5xl font-extrabold text-white font-serif">அ</div>
+                            </div>
+                            <div>
+                                <span class="text-xs text-gold-400 uppercase tracking-wider block mb-1">வட்டெழுத்து வடிவம்</span>
+                                <div id="display-vatteluttu" class="text-5xl font-extrabold text-gold-400 font-serif">𑌅</div>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 pt-4 border-t border-gold-600/20 flex items-center justify-between">
+                            <span id="display-sound-label" class="text-sm font-semibold text-amber-200">உச்சரிப்பு: "அ" (A)</span>
+                            <button onclick="playLetterSound()" class="bg-gold-500 hover:bg-gold-400 text-black px-4 py-2 rounded-xl text-xs font-bold inline-flex items-center space-x-1 shadow-md transition-all">
+                                <i class="fa-solid fa-volume-high"></i>
+                                <span>ஒலி கேட்க</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Words Practice & Example Flashcards -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="stone-card p-6 rounded-3xl border border-gold-600/30">
+                        <h3 class="text-xl font-bold font-serif text-amber-200 mb-3 flex items-center">
+                            <i class="fa-solid fa-spell-check text-gold-400 mr-2"></i>
+                            <span>பண்டைய கல்வெட்டு சொற்கள்</span>
+                        </h3>
+                        <p class="text-xs text-gray-400 mb-4">கீழ்கண்ட சொற்களை வட்டெழுத்தில் எப்படி எழுதுவது என பாருங்கள்:</p>
+
+                        <div class="space-y-3">
+                            <div class="bg-temple-dark p-3.5 rounded-xl border border-gold-600/20 flex justify-between items-center">
+                                <div>
+                                    <span class="text-amber-200 font-bold block">அரசன் (King)</span>
+                                    <span class="text-xs text-gray-400">சோழர் கல்வெட்டு சொல்</span>
+                                </div>
+                                <span class="text-2xl text-gold-400 font-serif">𑌅𑌰𑌸𑌨𑍍</span>
+                            </div>
+
+                            <div class="bg-temple-dark p-3.5 rounded-xl border border-gold-600/20 flex justify-between items-center">
+                                <div>
+                                    <span class="text-amber-200 font-bold block">கல்வெட்டு (Inscription)</span>
+                                    <span class="text-xs text-gray-400">பாறைப் பொறிப்பு</span>
+                                </div>
+                                <span class="text-2xl text-gold-400 font-serif">𑌕𑌲𑍍𑌵𑍆𑌟𑍍𑌟𑍁</span>
+                            </div>
+
+                            <div class="bg-temple-dark p-3.5 rounded-xl border border-gold-600/20 flex justify-between items-center">
+                                <div>
+                                    <span class="text-amber-200 font-bold block">சோழன் (Chola)</span>
+                                    <span class="text-xs text-gray-400">அரசர் வம்சம்</span>
+                                </div>
+                                <span class="text-2xl text-gold-400 font-serif">𑌚𑍋𑌴𑌨𑍍</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Vatteluttu Info -->
+                    <div class="p-5 rounded-3xl bg-gradient-to-br from-amber-950/40 to-temple-card border border-gold-500/20">
+                        <h4 class="font-bold text-gold-400 text-sm mb-1"><i class="fa-solid fa-circle-info mr-1"></i>வட்டெழுத்து குறிப்பு</h4>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            வட்டெழுத்து என்பது கி.பி 5-ஆம் நூற்றாண்டு முதல் கி.பி 11-ஆம் நூற்றாண்டு வரை தமிழ்நாட்டில் பயன்பாட்டில் இருந்த முதன்மையான வளைந்த எழுத்து வடிவமாகும்.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- 6. தஞ்சைப் பெரிய கோவில் சிறப்புகள் (Thanjavur Temple) -->
+        <section id="thanjavur" class="py-16 px-4 max-w-7xl mx-auto border-t border-gold-600/10">
+            <div class="stone-card rounded-3xl p-6 sm:p-12 border-2 border-gold-500/40 relative overflow-hidden bg-gradient-to-b from-temple-card via-temple-stone to-amber-950/30">
+                <div class="max-w-3xl mb-10">
+                    <span class="text-xs font-bold text-gold-500 uppercase tracking-widest">THANJAVUR BRIHADISVARA TEMPLE</span>
+                    <h2 class="text-3xl sm:text-5xl font-extrabold font-serif text-amber-100 mt-1 mb-4">
+                        தஞ்சைப் பெரிய கோவில் & கல்வெட்டுகள்
+                    </h2>
+                    <p class="text-gray-300 leading-relaxed text-base sm:text-lg">
+                        முதலாம் ராஜராஜ சோழனால் கி.பி 1010-இல் கட்டி முடிக்கப்பட்ட தஞ்சை அருள்மொழிவர்மன் பெருவுடையார் கோவில் தமிழர்களின் கட்டிடக்கலை மற்றும் கல்வெட்டுகளின் உச்சகட்ட உலக அதிசய சாதனையாகும்.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="bg-temple-dark/90 p-6 rounded-2xl border border-gold-600/20">
+                        <div class="text-gold-400 text-3xl mb-3"><i class="fa-solid fa-gopuram"></i></div>
+                        <h3 class="text-xl font-bold font-serif text-amber-200 mb-2">216 அடி விமானம்</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            கோவிலின் பிரதான விமான கோபுரம் 216 அடி உயரம் கொண்டது. இதன் உச்சியில் உள்ள ஒரே கல்லால் ஆன சிகரம் 80 டன் எடையுடையது!
+                        </p>
+                    </div>
+
+                    <div class="bg-temple-dark/90 p-6 rounded-2xl border border-gold-600/20">
+                        <div class="text-gold-400 text-3xl mb-3"><i class="fa-solid fa-scroll"></i></div>
+                        <h3 class="text-xl font-bold font-serif text-amber-200 mb-2">அனைவர் பெயரும் கல்வெட்டில்</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            கோவிலைக் கட்டிய தலைசிறந்த தச்சர்கள், சிற்பிகள், இசைக்கலைஞர்கள், நடனக் கலைஞர்கள் மற்றும் கடைநிலை பணியாளர்கள் வரை அனைவரின் பெயரும் கோவில் சுவரில் பொறிக்கப்பட்டுள்ளது.
+                        </p>
+                    </div>
+
+                    <div class="bg-temple-dark/90 p-6 rounded-2xl border border-gold-600/20">
+                        <div class="text-gold-400 text-3xl mb-3"><i class="fa-solid fa-sun"></i></div>
+                        <h3 class="text-xl font-bold font-serif text-amber-200 mb-2">நிழல் விழாத அற்புதம்</h3>
+                        <p class="text-xs text-gray-300 leading-relaxed">
+                            நண்பகல் வேளையில் கோவிலின் பிரதான விமானத்தின் நிழல் நிலத்தில் விழாதவாறு வடிவமைக்கப்பட்ட சோழர் கட்டிடக்கலை ரகசியம் இன்றளவும் வியக்க வைக்கிறது.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- 7. YouTube Channel & Bottom Subscription Banner -->
+        <section class="py-16 px-4 max-w-7xl mx-auto">
+            <div class="bg-gradient-to-br from-red-950 via-temple-card to-amber-950 rounded-3xl p-8 sm:p-14 text-center border-2 border-red-600/50 shadow-2xl relative overflow-hidden">
+                <div class="relative z-10 max-w-3xl mx-auto">
+                    
+                    <div class="w-20 h-20 mx-auto rounded-full bg-red-600/20 flex items-center justify-center text-red-500 text-4xl mb-6 shadow-inner border border-red-500/30">
+                        <i class="fa-brands fa-youtube animate-pulse"></i>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl font-black font-serif text-white mb-4">
+                        கல்வெட்டுத் தமிழன் YouTube Channel
+                    </h2>
+
+                    <p class="text-gray-300 text-base sm:text-lg mb-8 leading-relaxed">
+                        வரலாற்று சுவாரஸ்யங்கள், சோழர்களின் கல்வெட்டு ரகசியங்கள் மற்றும் வட்டெழுத்து பயிற்சி வீடியோக்களை தவறாமல் பார்க்க எங்களது யூடியூப் சேனலை சப்ஸ்கிரைப் செய்யுங்கள்!
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                        <a href="https://www.youtube.com/@KalVettuTamilan" target="_blank" rel="noopener noreferrer" 
+                           class="w-full sm:w-auto inline-flex items-center justify-center space-x-3 bg-red-600 hover:bg-red-700 text-white font-extrabold px-10 py-4 rounded-full text-lg shadow-2xl hover:shadow-red-600/50 transition-all transform hover:scale-105">
+                            <i class="fa-brands fa-youtube text-2xl"></i>
+                            <span>இப்போதே சப்ஸ்கிரைப் செய்யுங்கள்</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-temple-stone border-t border-gold-600/20 py-10 px-4 text-gray-400 text-sm">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+                <h3 class="text-lg font-bold font-serif text-gold-400 mb-2">கல்வெட்டுத் தமிழன்</h3>
+                <p class="text-xs text-gray-400 leading-relaxed mb-3">
+                    தமிழ் வரலாற்றுச் சின்னங்கள், பாறைப் பொறிப்புகள் மற்றும் வட்டெழுத்து வரலாற்றை அடுத்த தலைமுறைக்குக் கொண்டு சேர்க்கும் தளம்.
+                </p>
+                <p class="text-xs text-amber-300 font-semibold">உரிமையாளர்: ரித்தீஷ் (Rithish)</p>
+            </div>
+
+            <div>
+                <h4 class="text-gold-400 font-bold mb-3">விரைவு இணைப்புகள்</h4>
+                <ul class="space-y-2 text-xs">
+                    <li><a href="#about" class="hover:text-gold-300">கல்வெட்டு என்றால் என்ன?</a></li>
+                    <li><a href="#dynasties" class="hover:text-gold-300">மூவேந்தர்கள் வரலாறு</a></li>
+                    <li><a href="#vatteluttu" class="hover:text-gold-300">வட்டெழுத்து பயிற்சி</a></li>
+                    <li><a href="#thanjavur" class="hover:text-gold-300">தஞ்சைப் பெரிய கோவில்</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-gold-400 font-bold mb-3">சமூக ஊடகம்</h4>
+                <a href="https://www.youtube.com/@KalVettuTamilan" target="_blank" class="inline-flex items-center space-x-2 text-xs bg-red-600/20 text-red-400 px-3 py-2 rounded-lg border border-red-500/30 hover:bg-red-600 hover:text-white transition-all">
+                    <i class="fa-brands fa-youtube text-lg"></i>
+                    <span>YouTube: @KalVettuTamilan</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto pt-6 border-t border-gold-600/10 text-center text-xs text-gray-500">
+            © 2026 கல்வெட்டுத் தமிழன் (Kalvettu Tamilan). உருவாக்கியவர்: <strong>ரித்தீஷ் (Rithish)</strong>. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.
+        </div>
+    </footer>
+
+    <!-- Interactive JavaScript -->
+    <script>
+        // Vatteluttu Letters Dataset
+        const vatteluttuLetters = [
+            { modern: 'அ', vat: '𑌅', sound: 'A', name: 'அகரம்' },
+            { modern: 'ஆ', vat: '𑌆', sound: 'Aa', name: 'ஆகாரம்' },
+            { modern: 'இ', vat: '𑌇', sound: 'I', name: 'இகரம்' },
+            { modern: 'ஈ', vat: '𑌈', sound: 'Ee', name: 'ஈகாரம்' },
+            { modern: 'உ', vat: '𑌉', sound: 'U', name: 'உகரம்' },
+            { modern: 'ஊ', vat: '𑌊', sound: 'Oo', name: 'ஊகாரம்' },
+            { modern: 'எ', vat: '𑌋', sound: 'E', name: 'எகரம்' },
+            { modern: 'ஏ', vat: '𑌌', sound: 'Ae', name: 'ஏகாரம்' },
+            { modern: 'ஐ', vat: '𑌍', sound: 'Ai', name: 'ஐகாரம்' },
+            { modern: 'க', vat: '𑌕', sound: 'Ka', name: 'ககரம்' },
+            { modern: 'ங', vat: '𑌖', sound: 'Nga', name: 'ஙகரம்' },
+            { modern: 'ச', vat: '𑌚', sound: 'Cha', name: 'சகரம்' },
+            { modern: 'ஞ', vat: '𑌛', sound: 'Nya', name: 'ஞகரம்' },
+            { modern: 'ட', vat: '𑌟', sound: 'Ta', name: 'டகரம்' },
+            { modern: 'த', vat: '𑌤', sound: 'Tha', name: 'தகரம்' },
+            { modern: 'ந', vat: '𑌨', sound: 'Na', name: 'நகரம்' },
+            { modern: 'ப', vat: '𑌪', sound: 'Pa', name: 'பகரம்' },
+            { modern: 'ம', vat: '𑌮', sound: 'Ma', name: 'மகரம்' },
+            { modern: 'ய', vat: '𑌯', sound: 'Ya', name: 'யகரம்' },
+            { modern: 'ர', vat: '𑌰', sound: 'Ra', name: 'ரகரம்' },
+            { modern: 'ல', vat: '𑌲', sound: 'La', name: 'லகரம்' },
+            { modern: 'வ', vat: '𑌵', sound: 'Va', name: 'வகரம்' },
+            { modern: 'ழ', vat: '𑌴', sound: 'Zha', name: 'ழகரம்' },
+            { modern: 'ற', vat: '𑌱', sound: 'Rra', name: 'றகரம்' }
+        ];
+
+        let selectedIndex = 0;
+
+        // Populate Letters Grid
+        function initLetterGrid() {
+            const grid = document.getElementById('letters-grid');
+            grid.innerHTML = '';
+
+            vatteluttuLetters.forEach((item, index) => {
+                const btn = document.createElement('button');
+                btn.className = `p-3 rounded-xl font-bold font-serif text-lg transition-all border ${
+                    index === selectedIndex 
+                    ? 'bg-gold-500 text-black border-gold-300 shadow-md scale-105' 
+                    : 'bg-temple-dark text-amber-200 border-gold-600/20 hover:border-gold-500 hover:text-gold-400'
+                }`;
+                btn.innerText = item.modern;
+                btn.onclick = () => selectLetter(index);
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectLetter(index) {
+            selectedIndex = index;
+            const item = vatteluttuLetters[index];
+
+            document.getElementById('display-modern').innerText = item.modern;
+            document.getElementById('display-vatteluttu').innerText = item.vat;
+            document.getElementById('display-sound-label').innerText = `உச்சரிப்பு: "${item.modern}" (${item.sound}) - ${item.name}`;
+
+            initLetterGrid();
+        }
+
+        // Web Audio Synth for Pronunciation Sound Effect
+        function playLetterSound() {
+            try {
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                const ctx = new AudioContext();
+                
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+
+                // Generate pitch tone corresponding to letter index
+                const freq = 220 + (selectedIndex * 15);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+                gain.gain.setValueAtTime(0.3, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+
+                osc.start();
+                osc.stop(ctx.currentTime + 0.4);
+
+                // Speech synthesis fallback if available
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(vatteluttuLetters[selectedIndex].modern);
+                    utterance.lang = 'ta-IN';
+                    utterance.rate = 0.8;
+                    window.speechSynthesis.speak(utterance);
+                }
+            } catch (e) {
+                console.log('Audio playback error', e);
+            }
+        }
+
+        // Dynasty Selector Tabs Logic
+        function selectDynasty(dynasty) {
+            const contents = document.querySelectorAll('.dyn-content');
+            contents.forEach(el => el.classList.add('hidden'));
+
+            const buttons = document.querySelectorAll('.dyn-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('bg-gradient-to-r', 'from-gold-500', 'to-amber-600', 'text-black', 'shadow-lg');
+                btn.classList.add('bg-temple-card', 'text-gray-300', 'hover:text-gold-400', 'border', 'border-gold-600/30');
+            });
+
+            document.getElementById('dyn-' + dynasty).classList.remove('hidden');
+
+            const activeBtn = document.getElementById('btn-' + dynasty);
+            activeBtn.classList.add('bg-gradient-to-r', 'from-gold-500', 'to-amber-600', 'text-black', 'shadow-lg');
+            activeBtn.classList.remove('bg-temple-card', 'text-gray-300', 'hover:text-gold-400', 'border', 'border-gold-600/30');
+        }
+
+        // On Load Init
+        window.onload = function() {
+            initLetterGrid();
+        };
+    </script>
 </body>
 </html>
+```
